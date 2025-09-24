@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2 id="pageTitle">Day & Night Demo</h2>
+
+<p>The image changes based on the current time.</p>
+
+<!-- Image -->
+<img id="myImage" style="width:120px; display:block;">
+
+<!-- Buttons -->
+<br>
+<button onclick="showImage()">Show Image</button>
+<button onclick="hideImage()">Hide Image</button>
+<br><br>
+<button onclick="increaseFont()">Increase Title Size</button>
+<button onclick="decreaseFont()">Decrease Title Size</button>
+
+<script>
+// Run on page load
+window.onload = function() {
+  let hour = new Date().getHours();
+  let img = document.getElementById("myImage");
+
+  if (hour <= 17) {
+    img.src = "assets/sun.png"; 
+  } else {
+    img.src = "assets/moon.png"; 
+  }
+};
+
+// Show and hide functions
+function showImage() {
+  document.getElementById("myImage").style.display = "block";
+}
+
+function hideImage() {
+  document.getElementById("myImage").style.display = "none";
+}
+
+// Font size control
+function increaseFont() {
+  let title = document.getElementById("pageTitle");
+  let style = window.getComputedStyle(title, null).getPropertyValue('font-size');
+  let currentSize = parseFloat(style);
+  title.style.fontSize = (currentSize + 2) + "px";
+}
+
+function decreaseFont() {
+  let title = document.getElementById("pageTitle");
+  let style = window.getComputedStyle(title, null).getPropertyValue('font-size');
+  let currentSize = parseFloat(style);
+  title.style.fontSize = (currentSize - 2) + "px";
+}
+</script>
+
+</body>
+</html>
